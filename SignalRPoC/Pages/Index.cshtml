@@ -1,0 +1,17 @@
+﻿@page
+<div class="container">
+
+<div class="row">
+    <div class="col-lg-4 offset-1">
+        <button class="btn btn-lg btn-primary btn-block" id="fiveBtn">5 seconds</button>
+        <button class="btn btn-lg btn-primary btn-block" id="threeBtn">3 seconds</button>
+        <button class="btn btn-lg btn-primary btn-block" id="oneBtn">1 second</button>
+        <button class="btn btn-lg btn-danger btn-block" id="stopBtn">STOP</button>
+    </div>
+    <div class="col-lg-6 overflow-auto half-height">
+        <ul class="list-group" id="messagesList"></ul>
+    </div>
+</div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/main.js"></script>
