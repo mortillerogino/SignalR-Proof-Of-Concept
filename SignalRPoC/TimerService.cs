@@ -24,7 +24,7 @@ namespace SignalRPoC
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Step", DateTime.UtcNow);
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Step", $"Time update: {DateTime.Now}");
         }
 
         public void StartTime(int newTime)
@@ -38,6 +38,7 @@ namespace SignalRPoC
             _timer.Elapsed += Timer_Elapsed;
             _timer.AutoReset = true;
             _timer.Enabled = true;
+
         }
 
         public async Task ChangeTime(int newTime)
@@ -53,8 +54,8 @@ namespace SignalRPoC
             _timer.Interval = _currentInterval = newTimeValue;
             _timer.Start();
 
-
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Info", $"Time changed to {newTime} seconds");
+            string unit = newTime != 1 ? "seconds" : "second";
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Info", $"Update Interval changed to {newTime} {unit}");
         }
 
         public async Task StopTime()
@@ -66,7 +67,7 @@ namespace SignalRPoC
             _timer.Stop();
             _isStarted = false;
 
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Warning", $"Time stopped at {DateTime.UtcNow}");
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Warning", $"Time stopped at {DateTime.Now}");
         }
 
         public async Task StartAgain()

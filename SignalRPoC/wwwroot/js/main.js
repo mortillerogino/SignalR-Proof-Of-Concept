@@ -4,22 +4,18 @@ function addElement(status, message) {
     var li = document.createElement("li");
     var newMessage = "";
     if (status === "Step") {
-        newMessage = new Date(message);
         li.setAttribute('class', 'list-group-item')
     }
     else if (status === "Info") {
-        newMessage = message;
         li.setAttribute('class', 'list-group-item list-group-item-warning')
     }
     else if (status === "Warning") {
-        newMessage = message;
         li.setAttribute('class', 'list-group-item list-group-item-danger')
     }
     else {
-        newMessage = message;
         li.setAttribute('class', 'list-group-item list-group-item-success')
     }
-    li.textContent = newMessage;
+    li.textContent = message;
     var list = document.getElementById("messagesList");
     list.insertBefore(li, list.firstChild);
 }
@@ -35,7 +31,7 @@ connection.on("TimeUpdate", function (status, message) {
     addElement(status, message);
 });
 
-connection.start().then(addElement("Success", "Connection Successful")).catch(function (err) {
+connection.start().then(addElement("Success", "Connection Successful with Update Interval at 5 seconds")).catch(function (err) {
     return console.error(err.toString());
 });
 
