@@ -65,7 +65,7 @@ namespace SignalRPoC
             _timer.Stop();
             _isStarted = false;
 
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Warning", $"Time stopped at {DateTime.Now}");
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Stop", $"Time stopped at {DateTime.Now}");
         }
 
         public async Task StartAgain()
@@ -77,7 +77,7 @@ namespace SignalRPoC
             _timer.Start();
             _isStarted = true;
 
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Success", $"Time started at {DateTime.Now}");
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Start", $"Time started at {DateTime.Now}");
         }
     }
 }

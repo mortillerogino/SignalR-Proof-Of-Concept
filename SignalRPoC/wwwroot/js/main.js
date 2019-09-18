@@ -1,4 +1,5 @@
 ﻿"use strict";
+var isStarted = true;
 
 function addElement(status, message) {
     var li = document.createElement("li");
@@ -9,7 +10,7 @@ function addElement(status, message) {
     else if (status === "Info") {
         li.setAttribute('class', 'list-group-item list-group-item-warning')
     }
-    else if (status === "Warning") {
+    else if (status === "Stop") {
         li.setAttribute('class', 'list-group-item list-group-item-danger')
     }
     else {
@@ -25,9 +26,15 @@ var fiveBtn = document.getElementById("fiveBtn");
 var threeBtn = document.getElementById("threeBtn");
 var oneBtn = document.getElementById("oneBtn");
 var stopBtn = document.getElementById("stopBtn");
-var isStarted = true;
 
 connection.on("TimeUpdate", function (status, message) {
+    if (status === "Stop") {
+        changeBtn(false);
+    }
+    else {
+        changeBtn(true);
+    }
+    
     addElement(status, message);
 });
 
@@ -62,21 +69,32 @@ stopBtn.addEventListener("click", function (event) {
             return console.error(err.toString());
         });
         event.preventDefault();
-        stopBtn.textContent = "START"
-        stopBtn.setAttribute('class', 'btn btn-lg btn-success btn-block')
-        isStarted = false;
+
     }
     else {
         connection.invoke("StartTime").catch(function (err) {
             return console.error(err.toString());
         });
         event.preventDefault();
+
+    }
+
+    
+});
+
+function changeBtn(isStart) {
+    if (isStart != true) {
+        stopBtn.textContent = "START"
+        stopBtn.setAttribute('class', 'btn btn-lg btn-success btn-block')
+        isStarted = false;
+    }
+    else {
         stopBtn.textContent = "STOP"
         stopBtn.setAttribute('class', 'btn btn-lg btn-danger btn-block')
         isStarted = true;
     }
     
-});
+}
 
 
 
