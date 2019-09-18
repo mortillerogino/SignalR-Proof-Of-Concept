@@ -50,9 +50,7 @@ namespace SignalRPoC
                 return;
             }
 
-            _timer.Stop();
             _timer.Interval = _currentInterval = newTimeValue;
-            _timer.Start();
 
             string unit = newTime != 1 ? "seconds" : "second";
             await _hubContext.Clients.All.SendAsync("TimeUpdate", "Info", $"Update Interval changed to {newTime} {unit}");
@@ -79,7 +77,7 @@ namespace SignalRPoC
             _timer.Start();
             _isStarted = true;
 
-            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Success", $"Time started at {DateTime.UtcNow}");
+            await _hubContext.Clients.All.SendAsync("TimeUpdate", "Success", $"Time started at {DateTime.Now}");
         }
     }
 }
