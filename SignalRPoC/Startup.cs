@@ -58,7 +58,7 @@ namespace SignalRPoC
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<TimeUpdateHub>("/chatHub");
+                routes.MapHub<TimeUpdateHub>("/timeUpdateHub");
             });
 
             app.UseMvc();

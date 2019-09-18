@@ -20,7 +20,7 @@ function addElement(status, message) {
     list.insertBefore(li, list.firstChild);
 }
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl("/timeUpdateHub").build();
 var fiveBtn = document.getElementById("fiveBtn");
 var threeBtn = document.getElementById("threeBtn");
 var oneBtn = document.getElementById("oneBtn");
