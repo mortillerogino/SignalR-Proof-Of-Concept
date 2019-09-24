@@ -12,7 +12,6 @@ Technologies used:
 - Entity Framework
 - Razor Web Pages
 - Javascript (Native)
-- Json Web Token Authentication
 - Toastr Service
 - HTML/CSS
 - Bootstrap
