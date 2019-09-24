@@ -11,7 +11,7 @@ Technologies used:
 - SQL Server
 - Entity Framework
 - Razor Web Pages
-- Javascript/Angular
+- Javascript (Native)
 - Json Web Token Authentication
 - Toastr Service
 - HTML/CSS
